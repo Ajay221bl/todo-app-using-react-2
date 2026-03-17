@@ -1,56 +1,31 @@
 import { useState } from "react";
 import "./App.css";
 
-
+// creating a counter button using react
 
 export default function App(){
 
-    // creating the state
-    const [todos, setTodos] = useState([
-        {
-        title: "go to gym",
-        description : "go regurlary",
-        done : false
-    }
-]);
-    //function that adds updates the todo array
-    function addTodo(){
-        const newArr = [...todos];
-        newArr.push({
-            title : document.getElementById("title").value,
-            description : document.getElementById("description").value,
-            done: true
-        })
-        setTodos(newArr);
-}
 
-    // the main function of react renders the button 
-    // it also renders the todos from todo array in a neat fashion using the Todo component
+    const [count, setCount] = useState(0);
+
+    
+
+    function Counter(){
+        return (
+            <div>
+            <h1>{count}</h1>
+            <button onClick={IncreaseCounter}>Counter</button>
+            </div>
+        )
+    }
+
+    function IncreaseCounter(){
+        setCount(count + 1)
+    }
     return (
         <div>
-            <button onClick={addTodo}>Add Todo</button>
-            <input id="title" placeholder="add title"></input>
-            <input id="description" placeholder="add description"></input>
-        
-                {todos.map((todo)=>(
-                    <Todo
-                        title = {todo.title}
-                        description = {todo.description}
-                        done = {todo.done}
-                        />
-                ))
-            }
+            <Counter></Counter>
         </div>
     )
-
-
-    function Todo(prop){
-        return(
-        <div>
-            <h1>{prop.title}</h1>
-            <h2>{prop.description}</h2>
-            <h3>{prop.done ? "task is done" : "task is not done"}</h3>
-        </div>
-    )
-    }
-};
+}
+    
