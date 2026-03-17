@@ -3,34 +3,28 @@ import "./App.css";
 
 
 
-function App() {
-
+function App(){
 
     return (
-         <Counter></Counter>
-    
+        <div>
+        <Timer></Timer>
+        </div>
     )
 }
 
 
-function Counter(){
-        const [count, setCount] = useState(0);
-    function IncreaseCounter(){
+function Timer(){
+    const [count, setCount] = useState(0);
+
+    setInterval(function increase(){
         setCount(count + 1)
-    }
+    }, 1000)
 
     return (
         <div>
             <h1>{count}</h1>
-            <button onClick={IncreaseCounter}>Counter</button>
         </div>
     )
-}  
-
-
-
-
+}
 
 export default App
-
-
