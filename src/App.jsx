@@ -15,7 +15,7 @@ function App(){
 
 function Timer(){
     const [count, setCount] = useState(0);
-
+    // setInterval gets called again and again when react detects a change in state
     setInterval(function increase(){
         setCount(count + 1)
     }, 1000)
