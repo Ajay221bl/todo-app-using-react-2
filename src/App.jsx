@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect} from "react";
 import "./App.css";
 
 
@@ -15,10 +15,16 @@ function App(){
 
 function Timer(){
     const [count, setCount] = useState(0);
-    // setInterval gets called again and again when react detects a change in state
-    setInterval(function increase(){
-        setCount(count + 1)
+
+    //making sure that the setInterval function only gets rendered once by using useEffect() hook
+    useEffect(function(){
+        setInterval(function(){
+        setCount(function(count){
+            return count + 1 
+        })
     }, 1000)
+    }, [])
+    
 
     return (
         <div>
