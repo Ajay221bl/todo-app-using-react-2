@@ -22,6 +22,8 @@ export default function App(){
     function IncreaseCounter(){
         setCount(count + 1)
     }
+
+    
     return (
         <div>
             <Counter></Counter>
