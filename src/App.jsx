@@ -5,7 +5,7 @@ import { PostComponent } from "./components";
 // stopwatch in react
 
 function App(){
-    let [count, setCount] = useState(0)
+    let [count, setCount] = useState(1)
 
     function increaseCount(){
         setCount(currentValue=> currentValue + 1) // using lambda function instead of setCount(count + 1)
