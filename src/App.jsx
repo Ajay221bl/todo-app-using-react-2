@@ -5,18 +5,42 @@ import { PostComponent } from "./components";
 // stopwatch in react
 
 function App(){
-    let [count, setCount] = useState(1)
+    let [showTimer, setShowTimer] = useState(true);
+
+    useEffect(()=>{
+        setInterval(()=>{
+            setShowTimer(x=> !x)
+        }, 5000)
+
+        
+    }, [])
+
+    
+    return (
+        <div>{showTimer ? <Timer /> : <div></div> }</div>
+    )
+}
+
+function Timer(){
+    let [seconds, setSeconds] = useState(1);
+    
 
     function increaseCount(){
-        setCount(currentValue=> currentValue + 1) // using lambda function instead of setCount(count + 1)
+        setSeconds(prev=> prev + 1);
     }
 
     useEffect(()=>{
-        setInterval(increaseCount, 1000)
-    }, []);
+        let clock = setInterval(()=>{
+            increaseCount()
+        }, 1000)
 
+        // cleanup logic here in return expression
+         return function(){
+            clearInterval(clock)
+         }
+    }, [])
     return (
-        <div>{count}</div>
+        <div>{seconds} seconds elapsed</div>
     )
 }
 
