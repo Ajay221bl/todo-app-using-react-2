@@ -1,12 +1,25 @@
 import { useState, useEffect} from "react";
 import "./App.css";
-import { PostComponent } from "./components";
+
 
 // fetching data from backend using react
 
 function App(){
     let [currentTab, setCurrentTab] = useState(1);
     let [tabData, setTabData] = useState({});
+    let [loadingData, setLoadingData] = useState(false);
+
+    useEffect(()=>{
+        setLoadingData(true)
+        fetch(`https://jsonplaceholder.typicode.com/todos/${currentTab}`).then(
+            async res=> {
+               const json =  await res.json()
+    
+               setTabData(json)
+                setLoadingData(false)
+            }
+        )
+    }, [currentTab])
 
     
     
@@ -16,6 +29,8 @@ function App(){
             <button style={{color: currentTab==2 ? "red": "black"}} onClick={()=>setCurrentTab(2)}>todo2</button>
             <button style={{color: currentTab==3 ? "red": "black"}} onClick={()=>setCurrentTab(3)}>todo3</button>
             <button style={{color: currentTab==4 ? "red" : "black"}} onClick={()=>setCurrentTab(4)}>todo4</button>
+            
+            <div>{loadingData ? "loading..." : tabData.title}</div>
         </div>
     )
 }
